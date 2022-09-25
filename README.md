@@ -28,7 +28,7 @@ Create `ipsum.sh` script and add this into `crontab`
 
 firewall-cmd --permanent --delete-ipset=ipsum-blacklist 
 #create new ipset
-firewall-cmd --permanent --new-ipset=ipsum-blacklist --type=hash:ip
+firewall-cmd --permanent --new-ipset=ipsum-blacklist --type=hash:net
 #load and add IPs into ipset 
 for ip in $(curl --compressed https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt 2>/dev/null | grep -v "#" | grep -v -E "\s[1-2]$" | cut -f 1); do firewall-cmd --ipset=ipsum-blacklist --add-entry=$ip --permanent; done
 #firewall-cmd rules
