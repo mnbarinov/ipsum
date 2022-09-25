@@ -2,6 +2,12 @@
 
 [![License](https://img.shields.io/badge/license-The_Unlicense-red.svg)](https://unlicense.org/)
 
+Intro
+----
+Original repository is [here](https://github.com/stamparm/ipsum).
+
+I added a script for `firewall-cmd`
+
 About
 ----
 
