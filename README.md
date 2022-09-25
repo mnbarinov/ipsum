@@ -54,7 +54,7 @@ firewall-cmd --reload
 ```
 and add the script call into `/etc/crontab`
 ```
-* 5   * * *   root    /path/to/ipsum.sh save > /dev/null
+5 5   * * *   root    /path/to/ipsum.sh save > /dev/null
 ```
 
 
