@@ -19,9 +19,23 @@ As an example, to get a fresh and ready-to-deploy auto-ban list of "bad IPs" tha
 curl --compressed https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt 2>/dev/null | grep -v "#" | grep -v -E "\s[1-2]$" | cut -f 1
 ```
 
-If you want to try it with `firewall-cmd ipset`, you can do the following:
+IPTables
+----
+If you want to try it with ipset, you can do the following:
+```
+sudo su
+apt-get -qq install iptables ipset
+ipset -q flush ipsum
+ipset -q create ipsum hash:net
+for ip in $(curl --compressed https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt 2>/dev/null | grep -v "#" | grep -v -E "\s[1-2]$" | cut -f 1); do ipset add ipsum $ip; done
+iptables -D INPUT -m set --match-set ipsum src -j DROP 2>/dev/null
+iptables -I INPUT -m set --match-set ipsum src -j DROP
 
-Create `ipsum.sh` script and add this into `crontab`
+```
+Firewall-cmd
+----
+
+If you want to try it with `firewall-cmd ipset`, you can create `ipsum.sh` script:
 
 ```
 #!/bin/bash
@@ -38,4 +52,9 @@ firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" sourc
 firewall-cmd --reload
 
 ```
+and add the script call into `/etc/crontab`
+```
+* 5   * * *   root    /path/to/ipsum.sh save > /dev/null
+```
+
 
