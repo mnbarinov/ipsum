@@ -1,4 +1,4 @@
-![Logo](https://i.imgur.com/PyKLAe7.png)
+<img src="https://user-images.githubusercontent.com/64634630/192131628-a5a8a9ab-a973-498f-817d-01844157969d.png" width="200" height="200">
 
 [![License](https://img.shields.io/badge/license-The_Unlicense-red.svg)](https://unlicense.org/)
 
